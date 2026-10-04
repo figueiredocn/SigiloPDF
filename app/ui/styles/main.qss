@@ -1,0 +1,12 @@
+QWidget { background: #f4f7fb; color: #12203A; font-size: 14px; }
+QLabel#title { font-size: 30px; font-weight: bold; }
+QPushButton { background: #ffffff; border: 1px solid #b4c9dc; border-radius: 8px; padding: 12px; }
+QPushButton:hover { background: #e4f4f1; border-color: #14A38B; }
+QPushButton:focus { border: 2px solid #14A38B; }
+QPushButton:pressed { background: #cfece6; }
+QPushButton#brandLogo { font-size: 30px; font-weight: bold; }
+QPushButton:disabled { color: #697987; background: #e9eef3; }
+QLabel#dropArea { border: 2px dashed #14A38B; border-radius: 8px; padding: 18px; }
+QTableWidget { background: white; gridline-color: #d4dfe8; }
+QProgressBar { border: 1px solid #b4c9dc; border-radius: 4px; text-align: center; background: white; }
+QProgressBar::chunk { background: #14A38B; border-radius: 3px; }

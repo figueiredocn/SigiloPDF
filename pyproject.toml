@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sigilopdf"
+version = "1.0.0"
+description = "Manipulação local de PDFs com privacidade"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["PySide6>=6.8,<7", "pypdf[crypto]>=6,<7", "PyMuPDF>=1.26,<2", "Pillow>=11,<13"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+sigilopdf = "app.main:main"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+"app.ui.styles" = ["*.qss"]
+"app.ui.brand_assets" = ["*.svg", "*.ico"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
