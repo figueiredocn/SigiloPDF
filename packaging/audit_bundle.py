@@ -1,12 +1,12 @@
 """Auditoria local do pacote antes de criar arquivos de distribuição."""
 
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def audit_bundle() -> None:
-    bundle = ROOT / "dist" / "SigiloPDF"
+def audit_bundle(bundle: Path) -> None:
     if not (bundle / "SigiloPDF.exe").is_file():
         raise RuntimeError("Executável não encontrado.")
     personal_path = str(Path.home())
@@ -30,4 +30,4 @@ def audit_bundle() -> None:
 
 
 if __name__ == "__main__":
-    audit_bundle()
+    audit_bundle(Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "dist" / "SigiloPDF")

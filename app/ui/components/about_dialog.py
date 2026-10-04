@@ -51,7 +51,7 @@ class AboutDialog(QDialog):
             release = version("sigilopdf")
         except PackageNotFoundError:
             release = "1.0.0"
-        layout.addWidget(QLabel(f"Versão: {release}\nLicença do projeto: MIT\nSeus arquivos são processados localmente."))
+        layout.addWidget(QLabel(f"Versão: {release}\nCódigo próprio: MIT\nDistribuição com dependências: AGPL-3.0\nSeus arquivos são processados localmente."))
         close = QPushButton("Fechar")
         close.clicked.connect(self.close)
         layout.addWidget(close)

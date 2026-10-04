@@ -1,0 +1,38 @@
+[
+  {
+    "component": "libaom",
+    "version": "3.14.1",
+    "filename": "libaom-3.14.1.tar.gz",
+    "url": "https://aomedia.googlesource.com/aom",
+    "git_repository": "https://aomedia.googlesource.com/aom.git",
+    "git_revision": "03087864cf4bea6abb0d28f95cf7843511413d8f",
+    "sha256": "c930e9e3bfcfb503b5370bdcaf9546494a4ec4d879e7ea42a5f89a306a429c3d",
+    "size": 6406580
+  },
+  {
+    "component": "libyuv",
+    "version": "644251f252a84bf8ce91ff0aca86a9b16b069ab8",
+    "filename": "libyuv-644251f252a84bf8ce91ff0aca86a9b16b069ab8.tar.gz",
+    "url": "https://chromium.googlesource.com/libyuv/libyuv",
+    "git_repository": "https://chromium.googlesource.com/libyuv/libyuv",
+    "git_revision": "644251f252a84bf8ce91ff0aca86a9b16b069ab8",
+    "sha256": "2def62b1f3a5f7de2155fd9290959210f24795ae74afa8263723340fd2aac5f9",
+    "size": 593509
+  },
+  {
+    "component": "dav1d",
+    "version": "1.5.3",
+    "filename": "dav1d-1.5.3.tar.gz",
+    "url": "https://codeload.github.com/videolan/dav1d/tar.gz/refs/tags/1.5.3",
+    "sha256": "cbe212b02faf8c6eed5b6d55ef8a6e363aaab83f15112e960701a9c3df813686",
+    "size": 1713950
+  },
+  {
+    "component": "dlg",
+    "version": "395ccad2c1e0daae535c4d20bb0a3f2424648e17",
+    "filename": "dlg-395ccad2c1e0daae535c4d20bb0a3f2424648e17.tar.gz",
+    "url": "https://codeload.github.com/nyorain/dlg/tar.gz/395ccad2c1e0daae535c4d20bb0a3f2424648e17",
+    "sha256": "263a4a3777d9839e34cd41db988310659e0c00eab37beb7aedd30511a460133b",
+    "size": 837072
+  }
+]

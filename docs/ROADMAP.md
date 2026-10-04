@@ -20,8 +20,9 @@
 
 ## Fechamento e etapas futuras, ainda não iniciadas
 
-- Publicação do código-fonte da versão 1.0 preparada, com documentação, capturas reais e testes automatizados.
-- Empacotamento para distribuição desktop e revisão de acessibilidade.
+- Código-fonte da versão 1.0 publicado, com documentação, capturas reais e testes automatizados.
+- Distribuição Windows x64 preparada e validada, com instalador, portátil, licenças e fontes correspondentes.
+- Revisão de acessibilidade e validação em outras versões de Windows permanecem como etapas futuras.
 
 Cada ferramenta deverá ter testes, mensagens em pt-BR, saídas escolhidas
 explicitamente e proteção contra sobrescrita automática. Não há previsão

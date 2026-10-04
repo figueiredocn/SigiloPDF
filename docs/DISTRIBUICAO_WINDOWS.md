@@ -38,7 +38,7 @@ sem procurar ou remover os PDFs produzidos pelo usuário.
 .\scripts\prepare_sandbox.ps1
 ```
 
-Abra `build/SigiloPDF.wsb` com Windows Sandbox habilitado. A rede e o
+Abra `build/sandbox.wsb` com Windows Sandbox habilitado. A rede e o
 compartilhamento da área de transferência ficam desativados. Apenas os pacotes
 gerados entram na máquina isolada; documentos pessoais não são mapeados.
 O resultado fica em `build/sandbox-reports/resultado.json`. A validação verifica
@@ -59,8 +59,11 @@ com PDFs sintéticos, nem valida todas as versões de Windows.
 - Informar se o pacote não possui assinatura digital. Não orientar usuários a
   desativar o antivírus ou contornar bloqueios de segurança.
 
-O build local não autoriza automaticamente a publicação de binários.
-Consulte [avisos de terceiros](../THIRD_PARTY_NOTICES.md).
+A distribuição Windows adota AGPL-3.0; o código próprio permanece também sob MIT.
+Consulte [a licença de distribuição](../DISTRIBUTION_LICENSE.md), os
+[avisos de terceiros](../THIRD_PARTY_NOTICES.md) e as
+[fontes correspondentes](FONTES_CORRESPONDENTES.md). A release inclui os dois
+ZIPs de fontes, além do instalador, portátil e hashes SHA-256.
 
 ## Validação local de 4 de outubro de 2026
 
@@ -75,6 +78,7 @@ Consulte [avisos de terceiros](../THIRD_PARTY_NOTICES.md).
 
 Esses resultados cobrem inicialização e ciclo de instalação no Windows 10
 validado. A suíte funcional de 360 testes foi executada pelo código-fonte;
-não foi executada dentro do pacote congelado ou do Sandbox. A revisão de
-licenças e a reunião das fontes correspondentes ainda impedem a publicação
-dos binários. Nenhum executável foi anexado à release pública.
+não foi executada dentro do pacote congelado ou do Sandbox. As fontes de 71
+arquivos de dependências foram reunidas e verificadas por SHA-256. Os avisos
+e textos completos das licenças acompanham o pacote. A validação do Sandbox
+foi repetida com os artefatos finais após a atualização das licenças.

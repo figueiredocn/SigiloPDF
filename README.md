@@ -5,7 +5,7 @@
 SigiloPDF é um aplicativo desktop open source para trabalhar com arquivos PDF localmente. Ele reúne tarefas comuns como juntar, dividir, reorganizar, converter e proteger documentos sem exigir o envio dos arquivos para serviços online.
 
 ![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue)
-![Licença MIT](https://img.shields.io/badge/licença-MIT-green)
+![Código MIT / distribuição AGPL-3.0](https://img.shields.io/badge/licença-MIT%20%2F%20AGPL--3.0-green)
 ![Validado no Windows](https://img.shields.io/badge/plataforma-Windows-blue)
 
 ## Por que este projeto existe?
@@ -69,7 +69,14 @@ Para executar os testes:
 
 ## Download
 
-Os executáveis serão disponibilizados na página de [Releases](https://github.com/figueiredocn/SigiloPDF/releases). Esta primeira publicação distribui o código-fonte; ainda não há instalador ou executável oficial. O processo de empacotamento e validação está descrito em [Distribuição para Windows](docs/DISTRIBUICAO_WINDOWS.md).
+Os pacotes para Windows x64 estão na página de [Releases](https://github.com/figueiredocn/SigiloPDF/releases/tag/v1.0.0):
+
+- **Instalador:** `SigiloPDF-1.0.0-windows-x64-setup.exe`, instalação por usuário em pt-BR.
+- **Portátil:** `SigiloPDF-1.0.0-windows-x64-portable.zip`. Extraia a pasta inteira e abra `SigiloPDF.exe`; mantenha `_internal` ao lado dele.
+
+Não é necessário instalar Python. A versão foi validada no Windows 10, inclusive no Windows Sandbox sem Python e sem rede. Os pacotes não possuem assinatura digital. `SHA256SUMS.txt` permite verificar a integridade dos downloads.
+
+A distribuição completa segue AGPL-3.0; o código próprio também permanece sob MIT. As fontes correspondentes da aplicação e das dependências estão na mesma release, em ZIPs separados. Consulte [licença da distribuição](DISTRIBUTION_LICENSE.md), [fontes e reconstrução](docs/FONTES_CORRESPONDENTES.md) e [build para Windows](docs/DISTRIBUICAO_WINDOWS.md).
 
 ## Documentação e contribuições
 

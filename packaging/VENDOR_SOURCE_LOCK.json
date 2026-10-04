@@ -1,0 +1,426 @@
+[
+  {
+    "component": "rust-asn1",
+    "version": "0.24.1",
+    "filename": "asn1-0.24.1.crate",
+    "sha256": "c9795210620c0cb3f9a7ce4f882808c38e1ef7b347c90591dceae0886e031fb1",
+    "url": "https://static.crates.io/crates/asn1/asn1-0.24.1.crate",
+    "size": 50502
+  },
+  {
+    "component": "rust-asn1_derive",
+    "version": "0.24.1",
+    "filename": "asn1_derive-0.24.1.crate",
+    "sha256": "909e307f1cc32bb8bccbd98f446e6d1bf03fa30f7b53a4337da7181ad30fa11a",
+    "url": "https://static.crates.io/crates/asn1_derive/asn1_derive-0.24.1.crate",
+    "size": 9534
+  },
+  {
+    "component": "rust-base64",
+    "version": "0.23.0",
+    "filename": "base64-0.23.0.crate",
+    "sha256": "b25655df2c3cdd83c5e5b293b88acd880332b2ddadd7c30ac43144fdc0033da9",
+    "url": "https://static.crates.io/crates/base64/base64-0.23.0.crate",
+    "size": 93578
+  },
+  {
+    "component": "rust-bitflags",
+    "version": "2.13.1",
+    "filename": "bitflags-2.13.1.crate",
+    "sha256": "b588b76d00fde79687d7646a9b5bdf3cc0f655e0bbd080335a95d7e96f3587da",
+    "url": "https://static.crates.io/crates/bitflags/bitflags-2.13.1.crate",
+    "size": 51395
+  },
+  {
+    "component": "rust-cc",
+    "version": "1.4.0",
+    "filename": "cc-1.4.0.crate",
+    "sha256": "5add81bb678e6cb321aff7fa0dc7689ad82b112dbc032cea19f91d6b8e3582b9",
+    "url": "https://static.crates.io/crates/cc/cc-1.4.0.crate",
+    "size": 97878
+  },
+  {
+    "component": "rust-cfg-if",
+    "version": "1.0.4",
+    "filename": "cfg-if-1.0.4.crate",
+    "sha256": "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801",
+    "url": "https://static.crates.io/crates/cfg-if/cfg-if-1.0.4.crate",
+    "size": 9360
+  },
+  {
+    "component": "rust-find-msvc-tools",
+    "version": "0.1.9",
+    "filename": "find-msvc-tools-0.1.9.crate",
+    "sha256": "5baebc0774151f905a1a2cc41989300b1e6fbb29aff0ceffa1064fdd3088d582",
+    "url": "https://static.crates.io/crates/find-msvc-tools/find-msvc-tools-0.1.9.crate",
+    "size": 31493
+  },
+  {
+    "component": "rust-foreign-types",
+    "version": "0.3.2",
+    "filename": "foreign-types-0.3.2.crate",
+    "sha256": "f6f339eb8adc052cd2ca78910fda869aefa38d22d5cb648e6485e4d3fc06f3b1",
+    "url": "https://static.crates.io/crates/foreign-types/foreign-types-0.3.2.crate",
+    "size": 7504
+  },
+  {
+    "component": "rust-foreign-types-shared",
+    "version": "0.1.1",
+    "filename": "foreign-types-shared-0.1.1.crate",
+    "sha256": "00b0228411908ca8685dba7fc2cdd70ec9990a6e753e89b6ac91a84c40fbaf4b",
+    "url": "https://static.crates.io/crates/foreign-types-shared/foreign-types-shared-0.1.1.crate",
+    "size": 5672
+  },
+  {
+    "component": "rust-heck",
+    "version": "0.5.0",
+    "filename": "heck-0.5.0.crate",
+    "sha256": "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea",
+    "url": "https://static.crates.io/crates/heck/heck-0.5.0.crate",
+    "size": 11517
+  },
+  {
+    "component": "rust-itoa",
+    "version": "1.0.18",
+    "filename": "itoa-1.0.18.crate",
+    "sha256": "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682",
+    "url": "https://static.crates.io/crates/itoa/itoa-1.0.18.crate",
+    "size": 15935
+  },
+  {
+    "component": "rust-libc",
+    "version": "0.2.189",
+    "filename": "libc-0.2.189.crate",
+    "sha256": "3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2",
+    "url": "https://static.crates.io/crates/libc/libc-0.2.189.crate",
+    "size": 851502
+  },
+  {
+    "component": "rust-once_cell",
+    "version": "1.21.4",
+    "filename": "once_cell-1.21.4.crate",
+    "sha256": "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50",
+    "url": "https://static.crates.io/crates/once_cell/once_cell-1.21.4.crate",
+    "size": 35010
+  },
+  {
+    "component": "rust-openssl",
+    "version": "0.10.81",
+    "filename": "openssl-0.10.81.crate",
+    "sha256": "77823a27f0babb03091cb9ed9ef80af3b39dbc82f97e8fa530374b7dafd87a45",
+    "url": "https://static.crates.io/crates/openssl/openssl-0.10.81.crate",
+    "size": 311187
+  },
+  {
+    "component": "rust-openssl-macros",
+    "version": "0.1.1",
+    "filename": "openssl-macros-0.1.1.crate",
+    "sha256": "a948666b637a0f465e8564c73e89d4dde00d72d4d473cc972f390fc3dcee7d9c",
+    "url": "https://static.crates.io/crates/openssl-macros/openssl-macros-0.1.1.crate",
+    "size": 5601
+  },
+  {
+    "component": "rust-openssl-sys",
+    "version": "0.9.117",
+    "filename": "openssl-sys-0.9.117.crate",
+    "sha256": "b47e7e6bb2c38cd930d25a23b40fa52e068c10e85f3e03a7f5ba5aaca5713695",
+    "url": "https://static.crates.io/crates/openssl-sys/openssl-sys-0.9.117.crate",
+    "size": 76045
+  },
+  {
+    "component": "rust-pem",
+    "version": "4.0.0",
+    "filename": "pem-4.0.0.crate",
+    "sha256": "d354a98a3d1251555de99e8fdd8afda05573c31b82f59063a7b0a29b5527f120",
+    "url": "https://static.crates.io/crates/pem/pem-4.0.0.crate",
+    "size": 18770
+  },
+  {
+    "component": "rust-pkg-config",
+    "version": "0.3.33",
+    "filename": "pkg-config-0.3.33.crate",
+    "sha256": "19f132c84eca552bf34cab8ec81f1c1dcc229b811638f9d283dceabe58c5569e",
+    "url": "https://static.crates.io/crates/pkg-config/pkg-config-0.3.33.crate",
+    "size": 21590
+  },
+  {
+    "component": "rust-portable-atomic",
+    "version": "1.14.0",
+    "filename": "portable-atomic-1.14.0.crate",
+    "sha256": "3d20d5497ef88037a52ff98267d066e7f11fcc5e99bbfbd58a42336193aacec3",
+    "url": "https://static.crates.io/crates/portable-atomic/portable-atomic-1.14.0.crate",
+    "size": 200703
+  },
+  {
+    "component": "rust-proc-macro2",
+    "version": "1.0.107",
+    "filename": "proc-macro2-1.0.107.crate",
+    "sha256": "985e7ec9bb745e6ce6535b544d84d6cd6f7ad8bd711c398938ae983b91a766d9",
+    "url": "https://static.crates.io/crates/proc-macro2/proc-macro2-1.0.107.crate",
+    "size": 59588
+  },
+  {
+    "component": "rust-pyo3",
+    "version": "0.29.2",
+    "filename": "pyo3-0.29.2.crate",
+    "sha256": "4688ddedf473e32662b9b067670129a8afb8c18e351482c70d62ba4a88171e8b",
+    "url": "https://static.crates.io/crates/pyo3/pyo3-0.29.2.crate",
+    "size": 1255741
+  },
+  {
+    "component": "rust-pyo3-build-config",
+    "version": "0.29.2",
+    "filename": "pyo3-build-config-0.29.2.crate",
+    "sha256": "f41027e41b4bd03f6e60f9f417fe24a6341a6bb744edd62b6f709f2a52ea30e9",
+    "url": "https://static.crates.io/crates/pyo3-build-config/pyo3-build-config-0.29.2.crate",
+    "size": 41104
+  },
+  {
+    "component": "rust-pyo3-ffi",
+    "version": "0.29.2",
+    "filename": "pyo3-ffi-0.29.2.crate",
+    "sha256": "e591a95526fead067432c3b3a33fc74770b87b1e04e73671090d9c2055a2b327",
+    "url": "https://static.crates.io/crates/pyo3-ffi/pyo3-ffi-0.29.2.crate",
+    "size": 90029
+  },
+  {
+    "component": "rust-pyo3-macros",
+    "version": "0.29.2",
+    "filename": "pyo3-macros-0.29.2.crate",
+    "sha256": "73225868fc1cd84eef2c3c230ddb91273bf1de46aeb8a4248da76d32a0924a1c",
+    "url": "https://static.crates.io/crates/pyo3-macros/pyo3-macros-0.29.2.crate",
+    "size": 9044
+  },
+  {
+    "component": "rust-pyo3-macros-backend",
+    "version": "0.29.2",
+    "filename": "pyo3-macros-backend-0.29.2.crate",
+    "sha256": "571575aa3749fa6216757dd47d2a3e7ef360f329a40f0666a9fbd14889024952",
+    "url": "https://static.crates.io/crates/pyo3-macros-backend/pyo3-macros-backend-0.29.2.crate",
+    "size": 93749
+  },
+  {
+    "component": "rust-quote",
+    "version": "1.0.47",
+    "filename": "quote-1.0.47.crate",
+    "sha256": "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001",
+    "url": "https://static.crates.io/crates/quote/quote-1.0.47.crate",
+    "size": 31622
+  },
+  {
+    "component": "rust-self_cell",
+    "version": "1.3.0",
+    "filename": "self_cell-1.3.0.crate",
+    "sha256": "2ab42ca02749e120097e328d91d415325bdf43b1c72c4c8badf37375fe40a813",
+    "url": "https://static.crates.io/crates/self_cell/self_cell-1.3.0.crate",
+    "size": 23869
+  },
+  {
+    "component": "rust-shlex",
+    "version": "2.0.1",
+    "filename": "shlex-2.0.1.crate",
+    "sha256": "f8fadd59c855ef2080decdef8ff161eb6661b86933c9d82e5ba29dc602a55aba",
+    "url": "https://static.crates.io/crates/shlex/shlex-2.0.1.crate",
+    "size": 19332
+  },
+  {
+    "component": "rust-syn",
+    "version": "2.0.119",
+    "filename": "syn-2.0.119.crate",
+    "sha256": "872831b642d1a07999a962a351ed35b955ea2cfc8f3862091e2a240a84f17297",
+    "url": "https://static.crates.io/crates/syn/syn-2.0.119.crate",
+    "size": 307407
+  },
+  {
+    "component": "rust-target-lexicon",
+    "version": "0.13.5",
+    "filename": "target-lexicon-0.13.5.crate",
+    "sha256": "adb6935a6f5c20170eeceb1a3835a49e12e19d792f6dd344ccc76a985ca5a6ca",
+    "url": "https://static.crates.io/crates/target-lexicon/target-lexicon-0.13.5.crate",
+    "size": 26928
+  },
+  {
+    "component": "rust-unicode-ident",
+    "version": "1.0.24",
+    "filename": "unicode-ident-1.0.24.crate",
+    "sha256": "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75",
+    "url": "https://static.crates.io/crates/unicode-ident/unicode-ident-1.0.24.crate",
+    "size": 49298
+  },
+  {
+    "component": "rust-vcpkg",
+    "version": "0.2.15",
+    "filename": "vcpkg-0.2.15.crate",
+    "sha256": "accd4ea62f7bb7a82fe23066fb0957d48ef677f6eeb8215f372f52e48bb32426",
+    "url": "https://static.crates.io/crates/vcpkg/vcpkg-0.2.15.crate",
+    "size": 228735
+  },
+  {
+    "component": "Pillow-complete",
+    "version": "12.3.0",
+    "filename": "Pillow-complete-12.3.0.tar.gz",
+    "url": "https://codeload.github.com/python-pillow/Pillow/tar.gz/refs/tags/12.3.0",
+    "sha256": "d7ce60fdf8b3d3b4370ea213834d7c852b1ca16396d4e75e5046be815b11b2fb",
+    "size": 47120631
+  },
+  {
+    "component": "libjpeg-turbo",
+    "version": "3.1.4.1",
+    "filename": "libjpeg-turbo-3.1.4.1.tar.gz",
+    "url": "https://codeload.github.com/libjpeg-turbo/libjpeg-turbo/tar.gz/refs/tags/3.1.4.1",
+    "sha256": "a7da42b640377c2a9a9665e2c4b0ea60cd5599afb48c2521e6df0c9dc9d15a25",
+    "size": 2528617
+  },
+  {
+    "component": "pillow-zlib-ng",
+    "version": "2.3.3",
+    "filename": "pillow-zlib-ng-2.3.3.tar.gz",
+    "url": "https://codeload.github.com/zlib-ng/zlib-ng/tar.gz/refs/tags/2.3.3",
+    "sha256": "f9c65aa9c852eb8255b636fd9f07ce1c406f061ec19a2e7d508b318ca0c907d1",
+    "size": 2447397
+  },
+  {
+    "component": "pillow-xz",
+    "version": "5.8.3",
+    "filename": "pillow-xz-5.8.3.tar.gz",
+    "url": "https://codeload.github.com/tukaani-project/xz/tar.gz/refs/tags/v5.8.3",
+    "sha256": "8ec1767fa517642ecb4cf08b891ce667ba6f143551e382b07c7ef437bda335e2",
+    "size": 1664359
+  },
+  {
+    "component": "brotli",
+    "version": "1.2.0",
+    "filename": "brotli-1.2.0.tar.gz",
+    "url": "https://codeload.github.com/google/brotli/tar.gz/refs/tags/v1.2.0",
+    "sha256": "816c96e8e8f193b40151dad7e8ff37b1221d019dbcb9c35cd3fadbfe6477dfec",
+    "size": 646315
+  },
+  {
+    "component": "freetype",
+    "version": "2.14.3",
+    "filename": "freetype-2.14.3.tar.gz",
+    "url": "https://codeload.github.com/freetype/freetype/tar.gz/refs/tags/VER-2-14-3",
+    "sha256": "dc49de6b01a266eef4876a4dd34d9842c475d3e28ff2eff63bd2fb760ab56261",
+    "size": 2515533
+  },
+  {
+    "component": "lcms2",
+    "version": "2.19.1",
+    "filename": "lcms2-2.19.1.tar.gz",
+    "url": "https://codeload.github.com/mm2/Little-CMS/tar.gz/refs/tags/lcms2.19.1",
+    "sha256": "267705e278e2f7c2fb886c259dadcbaeb2be52748bcbc71c79f08aacacb7a709",
+    "size": 5731108
+  },
+  {
+    "component": "openjpeg",
+    "version": "2.5.4",
+    "filename": "openjpeg-2.5.4.tar.gz",
+    "url": "https://codeload.github.com/uclouvain/openjpeg/tar.gz/refs/tags/v2.5.4",
+    "sha256": "a695fbe19c0165f295a8531b1e4e855cd94d0875d2f88ec4b61080677e27188a",
+    "size": 2157028
+  },
+  {
+    "component": "harfbuzz",
+    "version": "14.2.1",
+    "filename": "harfbuzz-14.2.1.tar.gz",
+    "url": "https://codeload.github.com/harfbuzz/harfbuzz/tar.gz/refs/tags/14.2.1",
+    "sha256": "3c2a9006a7e1bf58737e557014d7882c554c628fb379a9f00008f5ea53dbbdfb",
+    "size": 37415150
+  },
+  {
+    "component": "fribidi",
+    "version": "1.0.16",
+    "filename": "fribidi-1.0.16.tar.gz",
+    "url": "https://codeload.github.com/fribidi/fribidi/tar.gz/refs/tags/v1.0.16",
+    "sha256": "5a1d187a33daa58fcee2ad77f0eb9d136dd6fa4096239199ba31e850d397e8a8",
+    "size": 2144176
+  },
+  {
+    "component": "libavif",
+    "version": "1.4.2",
+    "filename": "libavif-1.4.2.tar.gz",
+    "url": "https://codeload.github.com/AOMediaCodec/libavif/tar.gz/refs/tags/v1.4.2",
+    "sha256": "2b645287340ba5a631d268b551dc2d72bd73ac33335962dd36dcdb6d8366921d",
+    "size": 14665927
+  },
+  {
+    "component": "libwebp",
+    "version": "1.6.0",
+    "filename": "libwebp-1.6.0.tar.gz",
+    "url": "https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.6.0.tar.gz",
+    "sha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564",
+    "size": 4296070
+  },
+  {
+    "component": "tiff",
+    "version": "4.7.1",
+    "filename": "tiff-4.7.1.tar.gz",
+    "url": "https://download.osgeo.org/libtiff/tiff-4.7.1.tar.gz",
+    "sha256": "f698d94f3103da8ca7438d84e0344e453fe0ba3b7486e04c5bf7a9a3fabe9b69",
+    "size": 4000609
+  },
+  {
+    "component": "cpython-bzip2-1.0.8",
+    "version": "1.0.8",
+    "filename": "cpython-bzip2-1.0.8.tar.gz",
+    "url": "https://codeload.github.com/python/cpython-source-deps/tar.gz/refs/tags/bzip2-1.0.8",
+    "sha256": "ab8d1b0cc087c20d4c32c0e4fcf7d0c733a95da12cedc6d63b3f0a9af07427e2",
+    "size": 818771
+  },
+  {
+    "component": "cpython-libffi-3.4.4",
+    "version": "3.4.4",
+    "filename": "cpython-libffi-3.4.4.tar.gz",
+    "url": "https://codeload.github.com/python/cpython-source-deps/tar.gz/refs/tags/libffi-3.4.4",
+    "sha256": "9d802681adfea27d84cae0487a785fb9caa925bdad44c401b364c59ab2b8edda",
+    "size": 1375889
+  },
+  {
+    "component": "cpython-xz-5.2.5",
+    "version": "5.2.5",
+    "filename": "cpython-xz-5.2.5.tar.gz",
+    "url": "https://codeload.github.com/python/cpython-source-deps/tar.gz/refs/tags/xz-5.2.5",
+    "sha256": "a15c168e39e87d750c3dc766edc7f19bdda57dacf01e509678467eace91ad282",
+    "size": 1744796
+  },
+  {
+    "component": "cpython-zlib-ng-2.2.4",
+    "version": "2.2.4",
+    "filename": "cpython-zlib-ng-2.2.4.tar.gz",
+    "url": "https://codeload.github.com/python/cpython-source-deps/tar.gz/refs/tags/zlib-ng-2.2.4",
+    "sha256": "00bbd88709bc416cb96160ab61d3e1c8f76e106799af7328d0fe434dc7dd5004",
+    "size": 2415819
+  },
+  {
+    "component": "cpython-openssl-3.5.7",
+    "version": "3.5.7",
+    "filename": "cpython-openssl-3.5.7.tar.gz",
+    "url": "https://codeload.github.com/python/cpython-source-deps/tar.gz/refs/tags/openssl-3.5.7",
+    "sha256": "ca94e7c6c223d9caf77bb51aac5949186379608ea2a0cad3aa8bdf31856912e9",
+    "size": 53341406
+  },
+  {
+    "component": "MuPDF",
+    "version": "1.28.2",
+    "filename": "mupdf-1.28.2-source.tar.gz",
+    "url": "https://mupdf.com/downloads/archive/mupdf-1.28.2-source.tar.gz",
+    "sha256": "44075a84e329db55b9bef5f342a70fd26d69e48ad1d33cb89d9664581c641156",
+    "size": 68898646
+  },
+  {
+    "component": "openssl-cryptography",
+    "version": "4.0.3",
+    "filename": "openssl-cryptography-4.0.3.tar.gz",
+    "url": "https://codeload.github.com/openssl/openssl/tar.gz/refs/tags/openssl-4.0.3",
+    "sha256": "29cbaaabad1f3b0e8f28274eb8445a1cb0c54af21a6f845882ee018763df7159",
+    "size": 55421349
+  },
+  {
+    "component": "zstd",
+    "version": "1.5.7",
+    "filename": "zstd-1.5.7.tar.gz",
+    "url": "https://codeload.github.com/facebook/zstd/tar.gz/refs/tags/v1.5.7",
+    "sha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3",
+    "size": 2451884
+  }
+]

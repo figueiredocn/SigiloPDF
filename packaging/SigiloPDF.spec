@@ -33,6 +33,13 @@ analysis = Analysis(
 # A análise automática de importlib.metadata também coleta dados do pacote
 # editável. Remover o arquivo mesmo se um hook o acrescentar novamente.
 analysis.datas = [item for item in analysis.datas if not item[0].endswith("direct_url.json")]
+# Plugins opcionais de PDF e teclado virtual trazem QtPdf/QtQuick sem uso
+# neste aplicativo Widgets. PDFs e miniaturas são tratados por PyMuPDF.
+optional_qt = {
+    "qpdf.dll", "qtvirtualkeyboardplugin.dll", "Qt6Pdf.dll", "Qt6VirtualKeyboard.dll",
+    "Qt6Quick.dll", "Qt6Qml.dll", "Qt6QmlMeta.dll", "Qt6QmlModels.dll", "Qt6QmlWorkerScript.dll",
+}
+analysis.binaries = [item for item in analysis.binaries if Path(item[0]).name not in optional_qt]
 pyz = PYZ(analysis.pure)
 exe = EXE(
     pyz,

@@ -1,10 +1,18 @@
 param(
     [string]$Python = ".venv\Scripts\python.exe",
-    [string]$Iscc = ""
+    [string]$Iscc = "",
+    [string]$OutputDirectory = "dist"
 )
 
 $ErrorActionPreference = "Stop"
 Set-Location (Split-Path $PSScriptRoot -Parent)
+$output = [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $OutputDirectory))
+$distRoot = [System.IO.Path]::GetFullPath((Join-Path (Get-Location) "dist"))
+if ($output -ne $distRoot -and -not $output.StartsWith($distRoot + "\", [System.StringComparison]::OrdinalIgnoreCase)) {
+    throw "A saída do build deve ficar na pasta dist do projeto."
+}
+$archive = Join-Path $output "SigiloPDF-1.0.0-windows-x64-portable.zip"
+if (Test-Path -LiteralPath $archive) { throw "O ZIP já existe. Escolha outra pasta com -OutputDirectory." }
 
 function Invoke-Checked {
     param([string]$Program, [string[]]$Arguments)
@@ -14,8 +22,8 @@ function Invoke-Checked {
 
 Invoke-Checked $Python @("-m", "pytest", "-q")
 Invoke-Checked $Python @("packaging/prepare_notices.py")
-Invoke-Checked $Python @("-m", "PyInstaller", "--clean", "--noconfirm", "packaging/SigiloPDF.spec")
-Invoke-Checked $Python @("packaging/audit_bundle.py")
+Invoke-Checked $Python @("-m", "PyInstaller", "--clean", "--noconfirm", "--distpath", $output, "packaging/SigiloPDF.spec")
+Invoke-Checked $Python @("packaging/audit_bundle.py", (Join-Path $output "SigiloPDF"))
 
 if (-not $Iscc) {
     $candidates = @(
@@ -26,12 +34,10 @@ if (-not $Iscc) {
     $Iscc = $candidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 }
 if (-not $Iscc) { throw "Instale Inno Setup 6 ou informe -Iscc com o caminho do compilador." }
-Invoke-Checked $Iscc @("packaging/installer.iss")
+Invoke-Checked $Iscc @("/DBuildDir=$output", "packaging/installer.iss")
 
-$archive = "dist\SigiloPDF-1.0.0-windows-x64-portable.zip"
-if (Test-Path -LiteralPath $archive) { throw "O ZIP já existe. Escolha outro destino antes de gerar novamente." }
-Compress-Archive -LiteralPath "dist\SigiloPDF" -DestinationPath $archive
-Get-FileHash -Algorithm SHA256 $archive, "dist\installer\SigiloPDF-1.0.0-windows-x64-setup.exe" |
+Compress-Archive -LiteralPath (Join-Path $output "SigiloPDF") -DestinationPath $archive
+Get-FileHash -Algorithm SHA256 $archive, (Join-Path $output "installer\SigiloPDF-1.0.0-windows-x64-setup.exe") |
     ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $_.Path -Leaf)" } |
-    Set-Content -Encoding ascii "dist\SHA256SUMS.txt"
+    Set-Content -Encoding ascii (Join-Path $output "SHA256SUMS.txt")
 Write-Host "Pacotes locais gerados. Valide os artefatos e as fontes correspondentes antes de publicar."

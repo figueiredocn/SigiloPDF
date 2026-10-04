@@ -1,0 +1,114 @@
+[
+  {
+    "component": "pypdf",
+    "version": "6.19.0",
+    "filename": "pypdf-6.19.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/1f/ac/63d71aaedb59acbcdef491e6ca6469165e3771c9c74358204818fd9bc5a6/pypdf-6.19.0.tar.gz",
+    "sha256": "bbc43aca292369ccc6cbc8a921991ecf2538a3587ab5a116eff06c321d647155",
+    "size": 7033266
+  },
+  {
+    "component": "PyMuPDF",
+    "version": "1.28.2",
+    "filename": "pymupdf-1.28.2.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/a3/fb/b6761fa2d5266f2cdb24c3b91f4023070ab7848381417678e7a289a1d52a/pymupdf-1.28.2.tar.gz",
+    "sha256": "5e0be7908a715aa20333caddd73f1d6f01e4cd0c26e869fa2dd0b7f344da2249",
+    "size": 87903557
+  },
+  {
+    "component": "Pillow",
+    "version": "12.3.0",
+    "filename": "pillow-12.3.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/1c/3d/bb7fca845737cf9d7dbde16ed1843984665ff2e0a518f5db43e77ec540b9/pillow-12.3.0.tar.gz",
+    "sha256": "3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce",
+    "size": 47025035
+  },
+  {
+    "component": "cryptography",
+    "version": "50.0.2",
+    "filename": "cryptography-50.0.2.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/9d/af/182eb91b0df3fe75c4d9f26fe70684569566745f6ba7e5c9c73a862c5252/cryptography-50.0.2.tar.gz",
+    "sha256": "7b46165bb56eb4704e2eaaf86f3c940d19154535d9b0ca7d6d590b04060e00d5",
+    "size": 880623
+  },
+  {
+    "component": "cffi",
+    "version": "2.1.1",
+    "filename": "cffi-2.1.1.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/9e/ef/008a1939e372c06329a3fce4279c02f328488f3526744906eeec3da7ad5f/cffi-2.1.1.tar.gz",
+    "sha256": "dd31f52ea1086513bb9df30f8fcee9b8918323ae067a3d5b78bc826a000712be",
+    "size": 530807
+  },
+  {
+    "component": "pycparser",
+    "version": "3.0",
+    "filename": "pycparser-3.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/1b/7d/92392ff7815c21062bea51aa7b87d45576f649f16458d78b7cf94b9ab2e6/pycparser-3.0.tar.gz",
+    "sha256": "600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29",
+    "size": 103492
+  },
+  {
+    "component": "PyInstaller",
+    "version": "6.22.3",
+    "filename": "pyinstaller-6.22.3.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/63/41/f90302845945abd4ed647933ff5ee7c6ac93983187be67f897b6cb613331/pyinstaller-6.22.3.tar.gz",
+    "sha256": "05eb2f5615503e72939a7224d68b4aff572c6b0438ee4a17d0a4b481f399362d",
+    "size": 4437180
+  },
+  {
+    "component": "pyinstaller-hooks-contrib",
+    "version": "2026.8",
+    "filename": "pyinstaller_hooks_contrib-2026.8.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/c9/3b/fab1a12a21bf9223af012e5dd002b7d4265683d21d9fabbd0ccb347316e4/pyinstaller_hooks_contrib-2026.8.tar.gz",
+    "sha256": "4d825786ad7a9b7dbcc52d612748a34562fe273461bcfd88f4d549c594bbf8f9",
+    "size": 176955
+  },
+  {
+    "component": "qtbase",
+    "version": "6.11.2",
+    "filename": "qtbase-everywhere-src-6.11.2.tar.xz",
+    "url": "https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtbase-everywhere-src-6.11.2.tar.xz",
+    "sha256": "5b2e00eccaf5a4d8c14134ffa0ea8dfd0a35ae1ffc7f8d87fa4305a1ed23cf22",
+    "size": 50582668
+  },
+  {
+    "component": "qtsvg",
+    "version": "6.11.2",
+    "filename": "qtsvg-everywhere-src-6.11.2.tar.xz",
+    "url": "https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtsvg-everywhere-src-6.11.2.tar.xz",
+    "sha256": "d594337feca84c26fb67fe87b85e6a5c12fda404b611d905f9d138210c311876",
+    "size": 2341860
+  },
+  {
+    "component": "qtimageformats",
+    "version": "6.11.2",
+    "filename": "qtimageformats-everywhere-src-6.11.2.tar.xz",
+    "url": "https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtimageformats-everywhere-src-6.11.2.tar.xz",
+    "sha256": "cecd8900f34b6550076309bc94f62f828008b633a4239e0a08c86788f41001f8",
+    "size": 2050424
+  },
+  {
+    "component": "qttranslations",
+    "version": "6.11.2",
+    "filename": "qttranslations-everywhere-src-6.11.2.tar.xz",
+    "url": "https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qttranslations-everywhere-src-6.11.2.tar.xz",
+    "sha256": "021684c1a7937a9fabc3b056a6698ad5978794caf9ac190fd6cc11399e67c014",
+    "size": 1691056
+  },
+  {
+    "component": "pyside-setup",
+    "version": "6.11.2",
+    "filename": "pyside-setup-everywhere-src-6.11.2.tar.xz",
+    "url": "https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/pyside-setup-everywhere-src-6.11.2.tar.xz",
+    "sha256": "cba47efbaad1bedd529725cbc14e21f156c7a19366f07b3edfbb076ffd7afdf8",
+    "size": 18053248
+  },
+  {
+    "component": "CPython",
+    "version": "3.14.6",
+    "filename": "Python-3.14.6.tar.xz",
+    "url": "https://www.python.org/ftp/python/3.14.6/Python-3.14.6.tar.xz",
+    "sha256": "143b1dddefaec3bd2e21e3b839b34a2b7fb9842272883c576420d605e9f30c63",
+    "size": 23921184
+  }
+]

@@ -9,4 +9,6 @@ A licença MIT em LICENSE cobre o código próprio do SigiloPDF. Ela não substi
 - **cryptography**, instalado pelo extra `pypdf[crypto]`: Apache-2.0 ou BSD-3-Clause; componentes incorporados têm avisos próprios.
 - **pytest**, usado no desenvolvimento: MIT.
 
-Esta publicação contém o código-fonte do projeto, sem bibliotecas incorporadas ou executáveis. Antes de distribuir um instalador ou pacote que inclua dependências, reúna as licenças, avisos e fontes exigidos pelas versões efetivamente distribuídas e verifique as condições de cada componente.
+Os pacotes Windows incluem bibliotecas nas versões de `requirements-release.txt`. A distribuição completa segue AGPL-3.0, conforme [DISTRIBUTION_LICENSE.md](DISTRIBUTION_LICENSE.md), mantendo a MIT do código próprio. Os avisos integrais ficam em `_internal/licencas`, e as fontes correspondentes são disponibilizadas na mesma release. Consulte [fontes e reconstrução](docs/FONTES_CORRESPONDENTES.md).
+
+Bibliotecas nativas incorporadas incluem os codecs do Pillow, componentes de MuPDF e Qt, OpenSSL e runtime do Python. Os manifests de fontes registram versões, origem e SHA-256. DLLs de runtime Microsoft Visual C++ preservam os direitos da Microsoft e são componentes de sistema redistribuídos pelos fornecedores. O pacote não altera esses binários nem suas licenças.
