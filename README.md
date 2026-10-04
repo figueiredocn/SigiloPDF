@@ -69,7 +69,7 @@ Para executar os testes:
 
 ## Download
 
-Os executáveis serão disponibilizados na página de [Releases](https://github.com/figueiredocn/SigiloPDF/releases). Esta primeira publicação distribui o código-fonte; ainda não há instalador ou executável oficial.
+Os executáveis serão disponibilizados na página de [Releases](https://github.com/figueiredocn/SigiloPDF/releases). Esta primeira publicação distribui o código-fonte; ainda não há instalador ou executável oficial. O processo de empacotamento e validação está descrito em [Distribuição para Windows](docs/DISTRIBUICAO_WINDOWS.md).
 
 ## Documentação e contribuições
 

@@ -39,8 +39,8 @@ forçada de uma chamada em andamento da biblioteca PDF. Uma geração nova não
 preserva a validade de assinaturas digitais do documento original.
 
 Relate vulnerabilidades sem anexar documentos pessoais, caminhos reais ou senhas.
-Use arquivos sintéticos e instruções de reprodução. O projeto ainda não define
-um canal privado de divulgação; não publique detalhes sensíveis em issues abertas.
+Use arquivos sintéticos e instruções de reprodução. Use o canal privado de vulnerabilidades habilitado no GitHub, conforme
+[SECURITY.md](../SECURITY.md); não publique detalhes sensíveis em issues abertas.
 
 A proteção utiliza AES-256 (revisão 6 do padrão PDF), implementada pela
 biblioteca pypdf com o extra crypto já instalado. Não há criptografia própria,
