@@ -57,3 +57,23 @@ constitui anonimização absoluta. Assinaturas digitais perdem validade ao criar
 uma versão modificada. Temporários e saídas parciais são removidos quando o
 sistema permite; falhas de energia, encerramento forçado ou permissões podem
 impedir a limpeza. O fechamento normal aguarda os workers.
+
+Comprimir PDF preserva a criptografia original e pede senha quando necessária.
+Assinaturas detectadas exigem ciência explícita sobre possível invalidação.
+O modo de meta é limitado a sete tentativas e não ultrapassa 96 DPI/qualidade
+JPEG 50. Imagens com máscaras, cores incompatíveis ou mais de 25 milhões de
+pixels são mantidas. A verificação reabre cada candidato e confirma a contagem
+de páginas. Ela não valida certificados nem todas as características possíveis
+de um PDF. A saída usa o helper exclusivo, preserva o original e recebe sufixos
+em conflitos. Detalhes em [Compressão](COMPRESSAO.md).
+
+## Atualizações
+
+O checker consulta somente a API HTTPS de releases oficiais; valida a origem,
+a tag SemVer e que a release não é rascunho/prerelease. Não executa notas
+nem baixa binários automaticamente. Requisições não contêm dados de PDFs,
+credenciais, identificadores ou versão do sistema. Certificados são validados,
+redirecionamentos são recusados, há timeout de rede e limite de resposta.
+DNS/TLS usam a implementação e os certificados do sistema; o tempo efetivo
+pode incluir a resolução do sistema. Proxies autenticados não são suportados.
+A indisponibilidade do GitHub não afeta as operações locais.

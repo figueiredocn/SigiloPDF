@@ -21,8 +21,8 @@ def test_window_and_async_read(tmp_path: Path) -> None:
     application.processEvents()
     assert window.isVisible()
     cards = window.stack.widget(0).findChildren(QPushButton)
-    assert len(cards) == 12
-    assert sum(card.isEnabled() for card in cards) == 12
+    assert len(cards) == 13
+    assert sum(card.isEnabled() for card in cards) == 13
     next(card for card in cards if card.text() == "Informações do PDF").click()
     assert window.stack.currentIndex() == 1
     path = tmp_path / "teste.pdf"

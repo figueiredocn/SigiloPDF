@@ -1,5 +1,5 @@
 #ifndef AppVersion
-  #define AppVersion "1.0.0"
+  #error Informe AppVersion pelo script build_windows.ps1
 #endif
 #ifndef BuildDir
   #define BuildDir "..\dist"
@@ -12,6 +12,7 @@ AppVersion={#AppVersion}
 AppPublisher=Felipe Figueiredo
 AppPublisherURL=https://github.com/figueiredocn/SigiloPDF
 DefaultDirName={localappdata}\Programs\SigiloPDF
+DisableDirPage=no
 DefaultGroupName=SigiloPDF
 PrivilegesRequired=lowest
 ArchitecturesAllowed=x64compatible
@@ -27,7 +28,7 @@ WizardStyle=modern
 DisableProgramGroupPage=yes
 CloseApplications=yes
 LicenseFile=..\licenses\AGPL-3.0-only.txt
-InfoBeforeFile=installer_notice.txt
+InfoBeforeFile=..\build\metadata\installer_notice.txt
 
 [Languages]
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"

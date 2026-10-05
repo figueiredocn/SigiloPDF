@@ -35,7 +35,9 @@ def test_services_do_not_import_ui_or_qt() -> None:
         assert not any(name.startswith(("PySide6", "app.ui", "app.workers")) for name in imports(path))
 
 
-def test_no_network_imports_in_application() -> None:
+def test_network_is_restricted_to_release_service() -> None:
     forbidden = {"socket", "requests", "urllib", "http", "httpx", "aiohttp", "ftplib", "webbrowser"}
     for path in APP_ROOT.rglob("*.py"):
+        if path == APP_ROOT / "services" / "update_service.py":
+            continue
         assert not any(name.split(".")[0] in forbidden or name.startswith("PySide6.QtNetwork") for name in imports(path))

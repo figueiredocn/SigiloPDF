@@ -1,5 +1,7 @@
 # SigiloPDF
 
+**Versão atual: 1.1.0**
+
 **Seus documentos. Seu computador. Seu controle.**
 
 SigiloPDF é um aplicativo desktop open source para trabalhar com arquivos PDF localmente. Ele reúne tarefas comuns como juntar, dividir, reorganizar, converter e proteger documentos sem exigir o envio dos arquivos para serviços online.
@@ -28,8 +30,13 @@ O SigiloPDF reduz a necessidade de entregar documentos a serviços externos, mas
 - Numerar páginas.
 - Consultar informações técnicas, visualizar e editar metadados e remover metadados comuns.
 - Proteger PDFs com senha e remover a proteção com a senha correta.
+- Comprimir PDFs com níveis Leve, Equilibrada, Forte ou tamanho desejado.
 
 As operações criam novas saídas e preservam os originais. Nomes em conflito recebem um sufixo. A remoção de metadados comuns não elimina todas as possíveis informações identificadoras de um documento.
+
+### Compressão
+
+Reduza PDFs localmente ou informe um tamanho máximo desejado. Compare o resultado antes de salvar uma nova cópia. A meta pode não ser alcançada; modos mais fortes podem reduzir a qualidade das imagens. Consulte [modos e limitações](docs/COMPRESSAO.md).
 
 ## Interface
 
@@ -69,20 +76,42 @@ Para executar os testes:
 
 ## Download
 
-Os pacotes para Windows x64 estão na página de [Releases](https://github.com/figueiredocn/SigiloPDF/releases/tag/v1.0.0):
+Os pacotes para Windows x64 estão na página de [Releases](https://github.com/figueiredocn/SigiloPDF/releases/tag/v1.1.0):
 
-- **Instalador:** `SigiloPDF-1.0.0-windows-x64-setup.exe`, instalação por usuário em pt-BR.
-- **Portátil:** `SigiloPDF-1.0.0-windows-x64-portable.zip`. Extraia a pasta inteira e abra `SigiloPDF.exe`; mantenha `_internal` ao lado dele.
+- **Instalador:** `SigiloPDF-1.1.0-windows-x64-setup.exe`, instalação por usuário em pt-BR.
+- **Portátil:** `SigiloPDF-1.1.0-windows-x64-portable.zip`. Extraia a pasta inteira e abra `SigiloPDF.exe`; mantenha `_internal` ao lado dele.
 
-Não é necessário instalar Python. A versão foi validada no Windows 10, inclusive no Windows Sandbox sem Python e sem rede. Os pacotes não possuem assinatura digital. `SHA256SUMS.txt` permite verificar a integridade dos downloads.
+Não é necessário instalar Python. O executável é validado no Windows com PATH restrito; a validação isolada desta versão está descrita nas notas da release. Os pacotes não possuem assinatura digital. `SHA256SUMS.txt` permite verificar a integridade dos downloads.
 
 A distribuição completa segue AGPL-3.0; o código próprio também permanece sob MIT. As fontes correspondentes da aplicação e das dependências estão na mesma release, em ZIPs separados. Consulte [licença da distribuição](DISTRIBUTION_LICENSE.md), [fontes e reconstrução](docs/FONTES_CORRESPONDENTES.md) e [build para Windows](docs/DISTRIBUICAO_WINDOWS.md).
+
+## Atualizações
+
+O SigiloPDF pode verificar novas versões diretamente nas releases públicas do projeto. A verificação é opcional e não envia documentos ou informações sobre os arquivos utilizados. Em **Ajuda → Verificar atualizações**, consulte manualmente ou habilite a consulta automática, desativada inicialmente e limitada a uma vez a cada 24 horas. Baixar atualização abre a release oficial no navegador após seu clique; o aplicativo não substitui o executável.
 
 ## Documentação e contribuições
 
 Consulte a [arquitetura](docs/ARQUITETURA.md), as [limitações de segurança](docs/SEGURANCA.md), o [roadmap](docs/ROADMAP.md) e o [guia de contribuição](CONTRIBUTING.md). Para relatar vulnerabilidades, leia [SECURITY.md](SECURITY.md).
 
 O código do projeto usa a [licença MIT](LICENSE). As dependências têm licenças próprias, incluindo condições relevantes para redistribuição: veja [avisos de terceiros](THIRD_PARTY_NOTICES.md).
+
+## Pré-visualização e seleção de páginas
+
+Organizar, Dividir, Extrair, Remover e Girar compartilham miniaturas reais,
+carregadas progressivamente. PDF para imagens e Numeração também permitem
+seleção visual. Clique para selecionar; Ctrl adiciona páginas e Shift seleciona
+um conjunto. Os campos de páginas continuam aceitando os intervalos existentes.
+Na extração, a ordem digitada é preservada.
+
+Duplo clique amplia a página, com navegação pelas setas, zoom de 25% a 200% e
+ajuste à janela. Em Organizar, arraste páginas ou grupos para a posição desejada,
+use os botões de movimentação ou Alt+←/→ e Ctrl+Z. A numeração mostra a posição
+atual e a página original. Dividir também oferece pontos de divisão após páginas.
+As prévias não rasterizam os PDFs salvos nem modificam os originais.
+
+O diálogo Sobre fica em **Ajuda → Sobre o SigiloPDF**. O botão Repositório abre
+o navegador somente mediante clique explícito, sem incluir dados de documentos.
+O histórico completo permanece em [Releases](https://github.com/figueiredocn/SigiloPDF/releases). As versões anteriores continuam disponíveis.
 
 ## Autor
 

@@ -18,7 +18,9 @@ def wait_worker(page, application) -> None:
     assert page.worker is None
 
 
-def test_organizer_flow(tmp_path: Path) -> None:
+def test_organizer_flow(tmp_path: Path, monkeypatch) -> None:
+    from PySide6.QtWidgets import QMessageBox
+    monkeypatch.setattr(QMessageBox, "question", lambda *args: QMessageBox.StandardButton.Yes)
     application = create_application()
     window = MainWindow()
     window.show()

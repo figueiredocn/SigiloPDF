@@ -3,6 +3,7 @@
 import json
 import shutil
 import sys
+import runpy
 import tarfile
 from importlib.metadata import distribution
 from pathlib import Path, PurePosixPath
@@ -12,6 +13,7 @@ RUNTIME_PACKAGES = (
     "pypdf", "PyMuPDF", "Pillow", "cryptography", "cffi", "pycparser", "PyInstaller",
 )
 ROOT = Path(__file__).resolve().parent.parent
+RELEASE = runpy.run_path(str(ROOT / "app" / "version.py"))["__version__"]
 
 
 def copy_source_notices(destination: Path) -> None:
@@ -72,9 +74,18 @@ def prepare_notices() -> None:
     # O pacote editável contém direct_url.json com o caminho pessoal da máquina.
     # A versão precisa somente de METADATA, nunca desse arquivo de instalação.
     package = distribution("sigilopdf")
+    if package.version != RELEASE:
+        raise RuntimeError("Reinstale o projeto editável antes do build: a versão instalada está desatualizada.")
     metadata = ROOT / "build" / "metadata" / f"sigilopdf-{package.version}.dist-info"
     metadata.mkdir(parents=True, exist_ok=True)
     (metadata / "METADATA").write_text(package.read_text("METADATA"), encoding="utf-8")
+    template = (ROOT / "packaging" / "version_info.txt").read_text(encoding="utf-8")
+    windows_version = tuple(int(part) for part in RELEASE.split(".")) + (0,)
+    (metadata.parent / "version_info.txt").write_text(
+        template.replace("$VERSION_TUPLE", repr(windows_version)).replace("$VERSION", RELEASE), encoding="utf-8",
+    )
+    notice = (ROOT / "packaging" / "installer_notice.txt").read_text(encoding="utf-8")
+    (metadata.parent / "installer_notice.txt").write_text(notice.replace("$VERSION", RELEASE), encoding="utf-8")
 
 
 if __name__ == "__main__":

@@ -84,3 +84,45 @@ JPEG RGB/cinza sem transformação EXIF é incorporado sem recompressão. Outras
 imagens usam pixels normalizados e compressão sem perda. A escrita compartilha
 `write_unique_pdf`; a ordem da lista é capturada antes de iniciar a geração.
 O fechamento aguarda a operação e libera os ícones. Não há arquivos de thumbnails.
+
+Comprimir PDF usa `CompressionPage` → `CompressionWorker` → `CompressionService`
+→ `core/compression`. Models/presets, unidades, otimização de PDF, imagens e
+coordenação das tentativas possuem módulos próprios. O resultado tipado contém
+tamanhos, redução, meta, tentativas e avisos. O serviço mantém o melhor candidato
+temporário até salvar ou descartá-lo; a publicação reutiliza `write_unique_file`.
+Cada tentativa parte do original. O fechamento aguarda os workers e limpa o
+resultado. Veja [Compressão](COMPRESSAO.md).
+
+O pool global usa uma tarefa por vez para impedir chamadas concorrentes ao
+PyMuPDF por ferramentas distintas. A UI continua no loop gráfico independente;
+operações iniciadas em outras ferramentas aguardam sua vez no pool existente.
+## Pré-visualização compartilhada
+
+`PagePreviewPanel` usa `PageThumbnailList`, `PreviewWorker` e `PreviewService`.
+O serviço reutiliza o renderer existente de miniaturas e o parser de páginas;
+não há parser paralelo nem dependência Qt no core. O diálogo ampliado usa o
+mesmo serviço para renderizar uma página sob demanda. Sinais identificam a
+geração da sessão, impedindo resultados antigos de alterar uma entrada nova.
+Workers não acessam widgets. O pool global serializa as tarefas PDF fora da
+thread gráfica, evitando acesso simultâneo ao PyMuPDF.
+
+Identificadores originais permanecem estáveis após movimentações. A organização
+salva a sequência visual diretamente pelo serviço existente, sem usar imagens
+das prévias. O histórico local de movimentações guarda até 20 estados. Ícones
+têm cache de 64 MiB por painel; imagens ampliadas ficam limitadas a cerca de
+quatro milhões de pixels. Falhas de uma miniatura não interrompem as seguintes.
+
+## Versão e atualizações
+
+`app/version.py` centraliza a versão usada pela UI, metadata do pacote,
+recursos do executável, instalador e nomes de artefatos. `UpdateController`
+coordena preferências e sinais, chama `UpdateWorker` e `UpdateService`; o core
+`update_info.py` compara SemVer sem rede nem Qt. Somente o serviço de releases
+importa módulos de rede; a exceção é verificada nos testes de arquitetura.
+
+O worker usa um pool separado do pool serial de PDF. HTTPS valida certificados,
+usa timeout de quatro segundos nas operações de rede e limita a resposta
+a 256 KiB. Redirecionamentos, proxies do ambiente e autenticação são recusados.
+A UI recebe dados tipados e exibe notas como texto simples. URLs de download
+são aceitas apenas para tags SemVer no repositório oficial. O fechamento
+aguarda a consulta pendente, sem encerrar threads à força.

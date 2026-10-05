@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sigilopdf"
-version = "1.0.0"
+dynamic = ["version"]
 description = "Manipulação local de PDFs com privacidade"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -19,6 +19,9 @@ sigilopdf = "app.main:main"
 
 [tool.setuptools.packages.find]
 include = ["app*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "app.version.__version__"}
 
 [tool.setuptools.package-data]
 "app.ui.styles" = ["*.qss"]

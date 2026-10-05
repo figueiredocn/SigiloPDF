@@ -14,11 +14,14 @@ from app.ui.pages.pdf_images_page import PdfImagesPage
 from app.ui.pages.number_pdf_page import NumberPdfPage
 from app.ui.pages.metadata_page import MetadataPage
 from app.ui.pages.protection_page import ProtectionPage
+from app.ui.pages.compression_page import CompressionPage
 from app.ui.components.about_dialog import AboutDialog
+from app.ui.components.page_preview_panel import PagePreviewPanel
+from app.ui.components.update_controller import UpdateController
 from app.ui.branding import BrandHeader, brand_icon
 
 
-TOOLS = ["Juntar PDFs", "Dividir PDF", "Extrair páginas", "Organizar páginas", "Girar páginas", "Remover páginas", "Imagens para PDF", "PDF para imagens", "Numerar páginas", "Metadados", "Proteger PDF", "Informações do PDF"]
+TOOLS = ["Juntar PDFs", "Dividir PDF", "Extrair páginas", "Organizar páginas", "Girar páginas", "Remover páginas", "Imagens para PDF", "PDF para imagens", "Numerar páginas", "Metadados", "Proteger PDF", "Informações do PDF", "Comprimir PDF"]
 
 
 class MainWindow(QMainWindow):
@@ -41,17 +44,19 @@ class MainWindow(QMainWindow):
         self.stack = QStackedWidget()
         home = QWidget()
         grid = QGridLayout(home)
-        page_indexes = {"Informações do PDF": 1, "Juntar PDFs": 2, "Dividir PDF": 3, "Extrair páginas": 4, "Remover páginas": 5, "Girar páginas": 6, "Organizar páginas": 7, "Imagens para PDF": 8, "PDF para imagens": 9, "Numerar páginas": 10, "Metadados": 11, "Proteger PDF": 12}
+        page_indexes = {"Informações do PDF": 1, "Juntar PDFs": 2, "Dividir PDF": 3, "Extrair páginas": 4, "Remover páginas": 5, "Girar páginas": 6, "Organizar páginas": 7, "Imagens para PDF": 8, "PDF para imagens": 9, "Numerar páginas": 10, "Metadados": 11, "Proteger PDF": 12, "Comprimir PDF": 13}
         for index, name in enumerate(TOOLS):
             available = name in page_indexes
             card = QPushButton(name if available else name + "\nEm breve")
             card.setMinimumHeight(95)
             card.setEnabled(available)
+            if name == "Comprimir PDF":
+                card.setIcon(brand_icon("comprimir.svg"))
             if available:
                 page_index = page_indexes[name]
                 card.clicked.connect(lambda checked=False, index=page_index: self.stack.setCurrentIndex(index))
             grid.addWidget(card, index // 3, index % 3)
-        self.stack.addWidget(home)
+        self._add_tool_page(home)
         detail = QWidget()
         detail_layout = QVBoxLayout(detail)
         back = QPushButton("← Voltar às ferramentas")
@@ -124,7 +129,7 @@ class MainWindow(QMainWindow):
         self.pdf_images_page = PdfImagesPage()
         export_layout.addWidget(self.pdf_images_page)
         self._add_tool_page(export_detail)
-        for attribute, page_type in (("number_page", NumberPdfPage), ("metadata_page", MetadataPage), ("protection_page", ProtectionPage)):
+        for attribute, page_type in (("number_page", NumberPdfPage), ("metadata_page", MetadataPage), ("protection_page", ProtectionPage), ("compression_page", CompressionPage)):
             detail = QWidget()
             detail_layout = QVBoxLayout(detail)
             back = QPushButton("← Voltar às ferramentas")
@@ -135,13 +140,16 @@ class MainWindow(QMainWindow):
             detail_layout.addWidget(page)
             self._add_tool_page(detail)
         layout.addWidget(self.stack)
-        about = QPushButton("Sobre o SigiloPDF")
-        about.clicked.connect(self.show_about)
-        layout.addWidget(about)
+        help_menu = self.menuBar().addMenu("Ajuda")
+        about = help_menu.addAction("Sobre o SigiloPDF")
+        about.triggered.connect(self.show_about)
+        self.updates = UpdateController(self)
+        help_menu.addAction("Verificar atualizações").triggered.connect(self.updates.check_manual)
         self.setCentralWidget(container)
 
     def show_about(self) -> None:
         dialog = AboutDialog(self)
+        dialog.update_requested.connect(self.updates.check_manual)
         dialog.exec()
 
     def show_special(self) -> None:
@@ -158,12 +166,20 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(scroll)
 
     def _has_pending_work(self) -> bool:
-        pages = (self.info_page, self.merge_page, self.split_page, self.extract_page, self.remove_page, self.rotate_page, self.reorder_page, self.images_page, self.pdf_images_page, self.number_page, self.metadata_page, self.protection_page)
-        return any(page.worker is not None for page in pages) or QThreadPool.globalInstance().activeThreadCount() > 0
+        pages = (self.info_page, self.merge_page, self.split_page, self.extract_page, self.remove_page, self.rotate_page, self.reorder_page, self.images_page, self.pdf_images_page, self.number_page, self.metadata_page, self.protection_page, self.compression_page)
+        return (any(page.worker is not None for page in pages)
+                or self.updates.pending()
+                or bool(self.reorder_page.pending_workers)
+                or any(panel.has_pending_work() for panel in self.findChildren(PagePreviewPanel))
+                or QThreadPool.globalInstance().activeThreadCount() > 0)
 
     def closeEvent(self, event: QCloseEvent) -> None:
+        self.updates.prepare_close()
+        for panel in self.findChildren(PagePreviewPanel):
+            panel.prepare_close()
         self.reorder_page.prepare_close()
         self.pdf_images_page.prepare_close()
+        self.compression_page.prepare_close()
         if self._has_pending_work():
             event.ignore()
             self._close_requested = True
@@ -178,6 +194,9 @@ class MainWindow(QMainWindow):
         self.reorder_page.pages.clear()
         self.images_page.images.clear()
         self.pdf_images_page.pages.clear()
+        self.compression_page.cleanup()
+        for panel in self.findChildren(PagePreviewPanel):
+            panel.reset()
         super().closeEvent(event)
 
     def _finish_close(self) -> None:

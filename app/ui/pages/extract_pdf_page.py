@@ -5,10 +5,12 @@ from PySide6.QtWidgets import QFileDialog, QHBoxLayout, QLabel, QLineEdit, QPlai
 
 from app.services.extract_pdf_service import ExtractPdfError, ExtractPdfService, PdfInfo
 from app.ui.components.pdf_drop_area import PdfDropArea
+from app.ui.components.page_preview_panel import PagePreviewPanel
 from app.workers.extract_pdf_worker import ExtractPdfWorker, InspectExtractWorker
 
 
 class ExtractPdfPage(QWidget):
+    visual_pages = True
     service_type = ExtractPdfService
     page_title = "Extrair páginas"
     selection_caption = "Páginas desejadas"
@@ -66,6 +68,14 @@ class ExtractPdfPage(QWidget):
         self.expression.textChanged.connect(self.update_summary)
         self.output.textChanged.connect(self.update_summary)
         self.update_summary()
+        if self.visual_pages:
+            self.preview = PagePreviewPanel(self)
+            self.preview.bind(self.expression, self.choose_visual_mode)
+            layout.addWidget(self.preview)
+            self.extract_button.setText(self.page_title + " selecionadas" if self.page_title in ("Extrair páginas", "Remover páginas") else self.page_title)
+
+    def choose_visual_mode(self) -> None:
+        pass
 
     def file_dialog(self, save: bool) -> QFileDialog:
         dialog = QFileDialog(self, "Escolher destino" if save else "Selecionar PDF")
@@ -106,6 +116,8 @@ class ExtractPdfPage(QWidget):
         if self.worker is not None:
             return
         self.info = None
+        if hasattr(self, "preview"):
+            self.preview.reset()
         self.details.setText("Verificando o PDF…")
         self.output.clear()
         self.progress.setRange(0, 0)
@@ -122,6 +134,8 @@ class ExtractPdfPage(QWidget):
         source = Path(info.path)
         self.output.setText(str(source.with_name(source.stem[:100] + self.suggested_suffix)))
         self.status.setText("Confira o resumo e o destino antes de processar.")
+        if hasattr(self, "preview"):
+            self.preview.load(info.path, info.page_count or 0)
 
     def update_summary(self, *_args: object) -> None:
         self.summary_valid = False
@@ -189,3 +203,5 @@ class ExtractPdfPage(QWidget):
         for widget in (self.select_button, self.drop_area, self.expression, self.output_button):
             widget.setEnabled(idle)
         self.extract_button.setEnabled(idle and self.info is not None and self.summary_valid and bool(self.output.text()))
+        if hasattr(self, "preview"):
+            self.preview.setEnabled(idle)

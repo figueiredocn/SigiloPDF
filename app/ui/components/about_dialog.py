@@ -1,11 +1,10 @@
 """Sobre o aplicativo e mensagem especial acessível pelo logotipo."""
 
-from importlib.metadata import PackageNotFoundError, version
-
-from PySide6.QtCore import QEvent, QSize, Qt
-from PySide6.QtGui import QKeySequence, QShortcut
-from PySide6.QtWidgets import QDialog, QLabel, QPushButton, QTextEdit, QVBoxLayout
+from PySide6.QtCore import QEvent, QSize, Qt, QUrl, Signal
+from PySide6.QtGui import QDesktopServices, QKeySequence, QShortcut
+from PySide6.QtWidgets import QDialog, QHBoxLayout, QLabel, QPushButton, QTextEdit, QVBoxLayout
 from app.ui.branding import BrandHeader, brand_icon
+from app.version import REPOSITORY_URL, __version__
 
 MESSAGE = """Nem todo documento deveria precisar passar pela internet para que uma tarefa simples pudesse ser realizada.
 
@@ -21,15 +20,17 @@ Obrigado por escolher o SigiloPDF e por confiar neste projeto.
 
 Espero que ele seja útil para você.
 
-— Desenvolvedor do SigiloPDF"""
+— Figueiredocn Desenvolvedor do SigiloPDF"""
 
 
 class AboutDialog(QDialog):
+    update_requested = Signal()
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setWindowTitle("Sobre o SigiloPDF")
         self.setWindowIcon(brand_icon())
         self.resize(440, 320)
+        self.setMaximumWidth(520)
         self._logo_clicks = 0
         self.special_dialog: QDialog | None = None
         layout = QVBoxLayout(self)
@@ -42,23 +43,33 @@ class AboutDialog(QDialog):
         self._secret_shortcut = QShortcut(QKeySequence("Ctrl+Shift+P"), self)
         self._secret_shortcut.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
         self._secret_shortcut.activated.connect(self.show_special)
-        layout.addWidget(self.logo)
+        layout.addWidget(self.logo, alignment=Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(QLabel("Seus documentos. Seu computador. Seu controle."))
         description = QLabel("Toolkit open source para manipulação local de arquivos PDF.")
         description.setWordWrap(True)
         layout.addWidget(description)
-        try:
-            release = version("sigilopdf")
-        except PackageNotFoundError:
-            release = "1.0.0"
-        layout.addWidget(QLabel(f"Versão: {release}\nCódigo próprio: MIT\nDistribuição com dependências: AGPL-3.0\nSeus arquivos são processados localmente."))
+        layout.addWidget(QLabel(f"Versão: {__version__}\nCódigo próprio: MIT · Distribuição: AGPL-3.0"))
+        layout.addWidget(QLabel("Processamento local · Sem upload · Sem telemetria"))
+        actions = QHBoxLayout()
+        self.repository = QPushButton("Repositório")
+        self.repository.clicked.connect(self.open_repository)
+        actions.addWidget(self.repository)
+        self.updates = QPushButton("Verificar atualizações")
+        self.update_requested.connect(self.close)
+        self.updates.clicked.connect(self.update_requested)
+        actions.addWidget(self.updates)
         close = QPushButton("Fechar")
         close.clicked.connect(self.close)
-        layout.addWidget(close)
+        actions.addWidget(close)
+        layout.addLayout(actions)
         # Qualquer clique fora do logotipo interrompe a sequência, inclusive em filhos.
         self.installEventFilter(self)
         for widget in self.findChildren(QLabel) + self.findChildren(QPushButton):
             widget.installEventFilter(self)
+
+    def open_repository(self) -> None:
+        # Apenas ação explícita; URL fixa sem dados ou contexto de documentos.
+        QDesktopServices.openUrl(QUrl(REPOSITORY_URL))
 
     def _logo_clicked(self) -> None:
         self._logo_clicks += 1

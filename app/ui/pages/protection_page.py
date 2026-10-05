@@ -8,6 +8,7 @@ from app.ui.pages.extract_pdf_page import ExtractPdfPage
 
 
 class ProtectionPage(ExtractPdfPage):
+    visual_pages = False
     service_type = ProtectionService
     page_title = "Proteger PDF"
     suggested_suffix = "_protegido.pdf"

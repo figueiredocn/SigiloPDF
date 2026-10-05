@@ -47,6 +47,9 @@ class NumberPdfPage(ExtractPdfPage):
         return NumberSettings(None if self.scope.currentIndex() == 0 else self.expression.text(), self.first_number.value(),
                               self.start_page.value(), self.format.currentText(), self.position.currentText(), self.font_size.currentText())
 
+    def choose_visual_mode(self) -> None:
+        self.scope.setCurrentIndex(2)
+
     def update_summary(self, *_args: object) -> None:
         self.summary_valid = False
         if not hasattr(self, "scope") or self.info is None:
@@ -68,6 +71,11 @@ class NumberPdfPage(ExtractPdfPage):
             for widget in (self.scope, self.first_number, self.start_page, self.format, self.position, self.font_size):
                 widget.setEnabled(self.worker is None)
             self.expression.setEnabled(self.worker is None and self.scope.currentIndex() != 0)
+            if hasattr(self, "preview"):
+                if self.scope.currentIndex() == 0:
+                    self.preview.pages.select_pages(tuple(range(self.preview.pages.count())))
+                else:
+                    self.preview.sync_text()
 
     @Slot(object)
     def show_input(self, info) -> None:

@@ -11,7 +11,9 @@ $distRoot = [System.IO.Path]::GetFullPath((Join-Path (Get-Location) "dist"))
 if ($output -ne $distRoot -and -not $output.StartsWith($distRoot + "\", [System.StringComparison]::OrdinalIgnoreCase)) {
     throw "A saída do build deve ficar na pasta dist do projeto."
 }
-$archive = Join-Path $output "SigiloPDF-1.0.0-windows-x64-portable.zip"
+$releaseVersion = (& $Python -c "from app.version import __version__; print(__version__)").Trim()
+if ($LASTEXITCODE -ne 0 -or $releaseVersion -notmatch '^\d+\.\d+\.\d+$') { throw "Versão de build inválida." }
+$archive = Join-Path $output "SigiloPDF-$releaseVersion-windows-x64-portable.zip"
 if (Test-Path -LiteralPath $archive) { throw "O ZIP já existe. Escolha outra pasta com -OutputDirectory." }
 
 function Invoke-Checked {
@@ -34,10 +36,10 @@ if (-not $Iscc) {
     $Iscc = $candidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 }
 if (-not $Iscc) { throw "Instale Inno Setup 6 ou informe -Iscc com o caminho do compilador." }
-Invoke-Checked $Iscc @("/DBuildDir=$output", "packaging/installer.iss")
+Invoke-Checked $Iscc @("/DBuildDir=$output", "/DAppVersion=$releaseVersion", "packaging/installer.iss")
 
 Compress-Archive -LiteralPath (Join-Path $output "SigiloPDF") -DestinationPath $archive
-Get-FileHash -Algorithm SHA256 $archive, (Join-Path $output "installer\SigiloPDF-1.0.0-windows-x64-setup.exe") |
+Get-FileHash -Algorithm SHA256 $archive, (Join-Path $output "installer\SigiloPDF-$releaseVersion-windows-x64-setup.exe") |
     ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $_.Path -Leaf)" } |
     Set-Content -Encoding ascii (Join-Path $output "SHA256SUMS.txt")
 Write-Host "Pacotes locais gerados. Valide os artefatos e as fontes correspondentes antes de publicar."

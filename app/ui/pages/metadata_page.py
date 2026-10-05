@@ -8,6 +8,7 @@ from app.ui.pages.extract_pdf_page import ExtractPdfPage
 
 
 class MetadataPage(ExtractPdfPage):
+    visual_pages = False
     service_type = MetadataService
     page_title = "Metadados do PDF"
     suggested_suffix = "_metadados_editados.pdf"

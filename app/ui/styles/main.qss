@@ -10,3 +10,6 @@ QLabel#dropArea { border: 2px dashed #14A38B; border-radius: 8px; padding: 18px;
 QTableWidget { background: white; gridline-color: #d4dfe8; }
 QProgressBar { border: 1px solid #b4c9dc; border-radius: 4px; text-align: center; background: white; }
 QProgressBar::chunk { background: #14A38B; border-radius: 3px; }
+QListWidget#pdfPageGrid { background: white; border: 1px solid #b4c9dc; border-radius: 6px; }
+QListWidget#pdfPageGrid::item { padding: 5px; border: 2px solid transparent; border-radius: 6px; }
+QListWidget#pdfPageGrid::item:selected { background: #d9f2ed; border-color: #14A38B; color: #12203A; }

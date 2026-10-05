@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QComboBox, QFileDialog, QHBoxLayout, QLabel, QLine
 
 from app.services.split_pdf_service import PdfInfo, SplitMode, SplitPdfService
 from app.ui.components.pdf_drop_area import PdfDropArea
+from app.ui.components.page_preview_panel import PagePreviewPanel
 from app.workers.split_pdf_worker import InspectSplitWorker, SplitPdfWorker
 
 
@@ -26,7 +27,7 @@ class SplitPdfPage(QWidget):
         self.file_details.setWordWrap(True)
         layout.addWidget(self.file_details)
         self.mode = QComboBox()
-        for label, mode in [("Cada página em um PDF", SplitMode.EACH_PAGE), ("Intervalo", SplitMode.RANGE), ("Páginas específicas", SplitMode.SPECIFIC), ("Combinação", SplitMode.COMBINATION)]:
+        for label, mode in [("Cada página em um PDF", SplitMode.EACH_PAGE), ("Intervalo", SplitMode.RANGE), ("Páginas específicas", SplitMode.SPECIFIC), ("Combinação", SplitMode.COMBINATION), ("Pontos de divisão (após páginas)", SplitMode.POINTS)]:
             self.mode.addItem(label, mode)
         self.mode.currentIndexChanged.connect(self.update_mode)
         layout.addWidget(QLabel("Modo de divisão"))
@@ -61,6 +62,21 @@ class SplitPdfPage(QWidget):
         self.results.setReadOnly(True)
         layout.addWidget(self.results)
         self.update_mode()
+        self.preview = PagePreviewPanel(self)
+        self.preview.bind(self.expression, self.choose_visual_mode)
+        layout.addWidget(self.preview)
+        self.mark_button = QPushButton("Marcar divisão após páginas selecionadas")
+        self.mark_button.clicked.connect(self.mark_points)
+        layout.addWidget(self.mark_button)
+
+    def choose_visual_mode(self) -> None:
+        if self.mode.currentData() != SplitMode.POINTS:
+            self.mode.setCurrentIndex(3)
+
+    def mark_points(self) -> None:
+        indices = self.preview.pages.selected_pages()
+        self.mode.setCurrentIndex(self.mode.findData(SplitMode.POINTS))
+        self.expression.setText(self.preview.service.expression(indices))
 
     def file_dialog(self, directory: bool) -> QFileDialog:
         dialog = QFileDialog(self, "Escolher pasta de saída" if directory else "Selecionar PDF")
@@ -98,6 +114,7 @@ class SplitPdfPage(QWidget):
         if self.worker is not None:
             return
         self.info = None
+        self.preview.reset()
         self.file_details.setText("Verificando o PDF…")
         self.results.clear()
         self.progress.setRange(0, 0)
@@ -114,6 +131,7 @@ class SplitPdfPage(QWidget):
         self.file_details.setText(f"{info.name}\nTotal: {info.page_count} página(s) — Tamanho: {size} bytes")
         self.file_details.setToolTip(info.path)
         self.status.setText("PDF carregado. Escolha o modo e a pasta de saída.")
+        self.preview.load(info.path, info.page_count or 0)
 
     def connect_worker(self) -> None:
         if self.worker is None:
@@ -171,6 +189,7 @@ class SplitPdfPage(QWidget):
             SplitMode.RANGE: "Exemplo: 1-5",
             SplitMode.SPECIFIC: "Exemplo: 1,3,5,8",
             SplitMode.COMBINATION: "Exemplo: 1-3,5,8-10",
+            SplitMode.POINTS: "Exemplo: 2,5 — criar partes 1-2, 3-5 e 6-final",
         }
         self.expression.setPlaceholderText(hints[SplitMode(self.mode.currentData())])
         self.update_controls()
@@ -182,3 +201,16 @@ class SplitPdfPage(QWidget):
             widget.setEnabled(idle)
         self.expression.setEnabled(idle and not each_page)
         self.split_button.setEnabled(idle and self.info is not None and bool(self.folder.text()) and (each_page or bool(self.expression.text().strip())))
+        if hasattr(self, "preview"):
+            self.preview.setEnabled(idle)
+            self.mark_button.setEnabled(idle and self.info is not None)
+            if each_page:
+                self.preview.pages.select_pages(tuple(range(self.preview.pages.count())))
+            if self.mode.currentData() == SplitMode.POINTS:
+                try:
+                    points = self.preview.service.selection(self.expression.text(), self.preview.pages.count())
+                except ValueError:
+                    points = ()
+                self.preview.pages.set_split_points(points)
+            else:
+                self.preview.pages.set_split_points(())

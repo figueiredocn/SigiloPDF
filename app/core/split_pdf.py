@@ -20,6 +20,7 @@ class SplitMode(str, Enum):
     RANGE = "range"
     SPECIFIC = "specific"
     COMBINATION = "combination"
+    POINTS = "points"
 
 
 class SplitPdfError(Exception):
@@ -74,7 +75,13 @@ def split_pdf(source: str | Path, output_folder: str | Path, mode: SplitMode, ex
                 raise SplitPdfError("O PDF não possui páginas para dividir.")
             pages = _select_pages(mode, expression, total)
             stem = path.stem[:100]
-            if mode == SplitMode.EACH_PAGE:
+            if mode == SplitMode.POINTS:
+                if pages[-1] == total:
+                    raise SplitPdfError("Marque divisões antes da última página do documento.")
+                starts, ends = [1, *(page + 1 for page in pages)], [*pages, total]
+                groups = [list(range(start, end + 1)) for start, end in zip(starts, ends)]
+                names = [f"{stem}_parte_{index + 1:03d}_paginas_{selection_label(group)}" for index, group in enumerate(groups)]
+            elif mode == SplitMode.EACH_PAGE:
                 groups = [[page] for page in pages]
                 digits = max(3, len(str(total)))
                 names = [f"{stem}_pagina_{page:0{digits}d}" for page in pages]

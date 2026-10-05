@@ -22,8 +22,8 @@ O build recompõe a pasta gerada do aplicativo; não aponta para documentos.
 O ZIP existente não é substituído automaticamente.
 
 - Portátil: `dist/SigiloPDF/SigiloPDF.exe`, acompanhado da pasta `_internal`.
-- Arquivo portátil: `dist/SigiloPDF-1.0.0-windows-x64-portable.zip`.
-- Instalador: `dist/installer/SigiloPDF-1.0.0-windows-x64-setup.exe`.
+- Arquivo portátil: `dist/SigiloPDF-1.1.0-windows-x64-portable.zip`.
+- Instalador: `dist/installer/SigiloPDF-1.1.0-windows-x64-setup.exe`.
 - Verificação de integridade: `dist/SHA256SUMS.txt`.
 
 O instalador usa a pasta de programas do usuário, sem exigir administrador.
@@ -82,3 +82,28 @@ não foi executada dentro do pacote congelado ou do Sandbox. As fontes de 71
 arquivos de dependências foram reunidas e verificadas por SHA-256. Os avisos
 e textos completos das licenças acompanham o pacote. A validação do Sandbox
 foi repetida com os artefatos finais após a atualização das licenças.
+
+## Validação da versão 1.1.0
+
+O script mantém PyInstaller/Inno Setup e lê `app/version.py`. Use
+`-OutputDirectory dist/release-1.1.0` para preservar os artefatos anteriores.
+A metadata instalada precisa coincidir com a versão central.
+
+O executável oferece validação explícita com arquivos sintéticos:
+
+```powershell
+.\dist\release-1.1.0\SigiloPDF\SigiloPDF.exe --validar-build relatorio.json
+```
+
+O relatório deve ainda não existir. O autoteste valida informações, junção,
+organização, miniaturas, preview ampliado, compressão, saída, Sobre e checker
+com respostas simuladas (sem rede). Não lê PDFs pessoais. O relatório contém
+somente versão, plataforma e resultados. A rede real é validada separadamente
+contra a release oficial. Na desinstalação, PDFs não são procurados ou apagados;
+a preferência local de atualização permanece no perfil do usuário.
+
+Validação de 5 de outubro de 2026: 451 testes aprovados, auditoria do pacote
+aprovada e autoteste do binário real aprovado no host com PATH restrito.
+Windows Sandbox, sem Python e sem rede: portátil, ferramentas portáteis,
+instalação em pasta escolhida, versão instalada, ferramentas instaladas,
+desinstalação e preservação do documento sintético de controle aprovados.

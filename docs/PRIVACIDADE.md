@@ -3,8 +3,9 @@
 **Seus arquivos são processados localmente.**
 
 O SigiloPDF não possui telemetria, analytics, autenticação, serviços cloud,
-backend remoto ou APIs externas de processamento. O aplicativo não abre conexões
-de rede nem envia documentos, metadados, caminhos ou conteúdo a servidores.
+backend remoto ou APIs externas de processamento. Todas as operações sobre documentos funcionam offline e não enviam documentos,
+metadados, caminhos ou conteúdo a servidores. A única consulta de rede do
+aplicativo é a verificação opcional de releases públicas descrita abaixo.
 
 Informações consultadas permanecem na memória da aplicação e na tela. A ferramenta
 de informações não escreve PDFs, relatórios, histórico ou logs de documentos.
@@ -49,3 +50,37 @@ memória utilizada por strings; não há promessa de apagamento forense da RAM.
 A remoção de metadados elimina Info e XMP comuns do catálogo e das páginas,
 sem alterar o conteúdo visual. Não garante anonimização completa: textos,
 anexos, anotações e outros dados internos podem identificar pessoas ou origem.
+
+Comprimir PDF também é exclusivamente local. Os candidatos ficam no diretório
+temporário do sistema e são limpos após erro, cancelamento, troca de entrada/opções
+ou fechamento normal. O melhor candidato permanece até salvar ou descartar a
+comparação. Metadados e criptografia são preservados; senhas ficam somente em
+memória durante inspeção/compressão. Nenhum conteúdo ou tamanho é enviado pela
+ferramenta. Veja [Compressão](COMPRESSAO.md).
+
+As miniaturas e a visualização ampliada são geradas localmente, somente em
+memória, sem salvar imagens temporárias. O cache de ícones é limitado a 64 MiB
+por painel e cada imagem ampliada a aproximadamente quatro milhões de pixels.
+A troca de arquivo invalida resultados antigos; o fechamento cancela prévias
+e aguarda a liberação dos workers.
+
+Em Ajuda → Sobre, o botão Repositório abre uma URL fixa do projeto no navegador
+somente após uma ação explícita. O navegador pode acessar o GitHub; o SigiloPDF
+não envia conteúdo, caminho, senha ou contexto de documentos nessa ação.
+
+## Verificação opcional de versões
+
+A partir da versão 1.1.0, Ajuda → Verificar atualizações pode consultar
+`https://api.github.com/repos/figueiredocn/SigiloPDF/releases/latest`. A consulta
+automática vem desativada. Ao habilitá-la, ocorre no máximo uma tentativa a cada
+24 horas, inclusive se houver falha; a consulta manual depende de seu clique.
+É um GET com Accept e User-Agent genérico SigiloPDF, sem autenticação, cookies,
+identificador exclusivo, versão de Windows ou contexto de uso/documentos.
+O GitHub recebe os dados normais necessários à conexão HTTPS, como o IP.
+
+São armazenados localmente apenas preferência, instante da última tentativa
+e última versão pública observada. A configuração fica em
+`%LOCALAPPDATA%/SigiloPDF/update_preferences.json` no Windows; não contém
+histórico, nomes, caminhos ou senhas de documentos. Pode ser desativada na mesma
+tela. Falhas não impedem usar as ferramentas offline. Baixar atualização abre
+a página oficial somente após clique, sem download ou instalação automática.

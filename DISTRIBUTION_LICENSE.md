@@ -15,7 +15,7 @@ condições de fornecimento das fontes e preservação dos avisos. O programa
 é fornecido sem garantia, conforme os textos das licenças.
 
 As fontes correspondentes da aplicação e das dependências são oferecidas
-gratuitamente na mesma [release dos binários](https://github.com/figueiredocn/SigiloPDF/releases/tag/v1.0.0),
+gratuitamente na mesma [release dos binários](https://github.com/figueiredocn/SigiloPDF/releases/tag/v1.1.0),
 em arquivos separados, com versões, checksums e instruções de compilação.
 Use o arquivo de fontes correspondente ao pacote Windows; o ZIP automático
 do GitHub para a tag original da publicação do código-fonte é um registro anterior.

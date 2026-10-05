@@ -1,9 +1,11 @@
-SigiloPDF 1.0.0
+SigiloPDF $VERSION
 
 Seus documentos. Seu computador. Seu controle.
 
 Os documentos são processados localmente pelo aplicativo. Não há upload,
 conta, telemetria ou armazenamento remoto de PDFs.
+Verificar novas versões no GitHub é opcional, não envia documentos e vem
+desativado. A preferência pode ser alterada em Ajuda → Verificar atualizações.
 
 Este pacote com suas dependências é distribuído sob GNU AGPL, versão 3.
 O código próprio do SigiloPDF também permanece disponível sob MIT.
@@ -11,7 +13,7 @@ As licenças e direitos dos demais componentes continuam aplicáveis.
 
 As fontes correspondentes da aplicação e das dependências, com versões,
 checksums e instruções de compilação, estão disponíveis gratuitamente em:
-https://github.com/figueiredocn/SigiloPDF/releases/tag/v1.0.0
+https://github.com/figueiredocn/SigiloPDF/releases/tag/v$VERSION
 
 O programa é fornecido sem garantia, conforme os textos das licenças.
 Os avisos completos acompanham o programa em _internal\licencas.

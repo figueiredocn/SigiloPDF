@@ -1,10 +1,10 @@
 from pathlib import Path
 
 from PySide6.QtCore import QThreadPool, Qt, Slot
-from PySide6.QtWidgets import QAbstractItemView, QComboBox, QFileDialog, QFormLayout, QHBoxLayout, QLabel, QLineEdit, QPlainTextEdit, QProgressBar, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QComboBox, QFileDialog, QFormLayout, QHBoxLayout, QLabel, QLineEdit, QPlainTextEdit, QProgressBar, QPushButton, QVBoxLayout, QWidget
 
 from app.services.pdf_images_service import JPEG_QUALITIES, RESOLUTIONS, PdfImagesService, PdfInfo
-from app.ui.components.page_thumbnail_list import PageThumbnailList
+from app.ui.components.page_preview_panel import PagePreviewPanel
 from app.ui.components.pdf_drop_area import PdfDropArea
 from app.ui.pages.reorder_pdf_page import ReorderPdfPage
 from app.workers.pdf_images_worker import PdfImagesWorker
@@ -30,10 +30,9 @@ class PdfImagesPage(QWidget):
         self.details.setTextFormat(Qt.TextFormat.PlainText)
         self.details.setWordWrap(True)
         layout.addWidget(self.details)
-        self.pages = PageThumbnailList()
-        self.pages.setDragDropMode(QAbstractItemView.DragDropMode.NoDragDrop)
-        self.pages.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
-        layout.addWidget(self.pages)
+        self.preview = PagePreviewPanel(self)
+        self.pages = self.preview.pages
+        layout.addWidget(self.preview)
         form = QFormLayout()
         self.selection_mode = QComboBox()
         self.selection_mode.addItems(("Todas as páginas", "Intervalo", "Páginas específicas / combinação"))
@@ -82,6 +81,7 @@ class PdfImagesPage(QWidget):
         self.results.setMaximumHeight(120)
         layout.addWidget(self.results)
         self.update_options()
+        self.preview.bind(self.expression, lambda: self.selection_mode.setCurrentIndex(2))
 
     def select_file(self) -> None:
         dialog = ReorderPdfPage._dialog(self, False)
@@ -104,12 +104,17 @@ class PdfImagesPage(QWidget):
         self.expression.setEnabled(not busy and self.selection_mode.currentIndex() != 0)
         self.quality.setEnabled(not busy and self.image_format.currentText() == "JPEG")
         self.export_button.setEnabled(not busy and self.info is not None and bool(self.folder.text()))
+        if self.selection_mode.currentIndex() == 0:
+            self.pages.select_pages(tuple(range(self.pages.count())))
+        else:
+            self.preview.sync_text()
 
     @Slot(str)
     def inspect_file(self, path: str) -> None:
         if self.worker is not None:
             return
         self.info, self.loaded = None, 0
+        self.preview.reset()
         self.pages.clear()
         self.results.clear()
         self.details.setText("Verificando o PDF…")
@@ -133,12 +138,16 @@ class PdfImagesPage(QWidget):
 
     @Slot(object)
     def inspected(self, info: PdfInfo) -> None:
+        if self.preview.closing:
+            return
         self.info = info
         self.details.setText(f"{info.name} — {info.page_count} páginas — {info.size_bytes} bytes")
-        self.pages.populate(info.page_count or 0)
+        self.preview.load(info.path, info.page_count or 0, external=True)
 
     @Slot(int, bytes)
     def thumbnail(self, index: int, data: bytes) -> None:
+        if self.preview.closing or not self.pages.count():
+            return
         self.pages.thumbnail(index, data)
         self.loaded += 1
         self.on_progress(int(100 * self.loaded / self.pages.count()), f"{self.loaded} / {self.pages.count()} miniaturas carregadas")
@@ -159,6 +168,8 @@ class PdfImagesPage(QWidget):
 
     @Slot()
     def finished(self) -> None:
+        if self.worker is not None and self.worker.folder is None:
+            self.preview.complete()
         self.worker = None
         for widget in (self.select_button, self.drop_area, self.selection_mode, self.image_format, self.resolution, self.folder_button):
             widget.setEnabled(True)

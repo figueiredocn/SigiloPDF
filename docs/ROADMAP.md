@@ -18,7 +18,22 @@
 - Tela Sobre com versão, licença e processamento local.
 - Separação UI → services → core e testes com documentos sintéticos.
 
-## Fechamento e etapas futuras, ainda não iniciadas
+## Versão 1.1.0
+
+- Comprimir PDF: Leve, Equilibrada, Forte e Tamanho desejado.
+- Otimização estrutural antes da redução de imagens, sem rasterizar páginas.
+- Até sete tentativas, limites mínimos de qualidade e indicação de meta não atingida.
+- Comparação antes de salvar, nomes seguros e cancelamento entre etapas.
+- Preservação de criptografia e aviso sobre assinaturas detectadas.
+- Verificação opcional de releases oficiais, manual ou a cada 24 horas.
+- Versão centralizada, pacotes Windows e histórico preservado no GitHub Releases.
+
+## Publicação e etapas futuras
+
+- Na versão 1.1.0: miniaturas compartilhadas, seleção Ctrl/Shift, visualização
+  ampliada, movimentação de grupos, desfazer limitado e divisão por pontos.
+- Validar estas melhorias em outros equipamentos antes de distribuir um novo
+  executável. Processamento de documentos continua local.
 
 - Código-fonte da versão 1.0 publicado, com documentação, capturas reais e testes automatizados.
 - Distribuição Windows x64 preparada e validada, com instalador, portátil, licenças e fontes correspondentes.

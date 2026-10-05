@@ -2,10 +2,12 @@
 from pathlib import Path
 import os
 import sys
+import runpy
 
 from PyInstaller.utils.hooks import collect_data_files
 
 root = Path(SPECPATH).parent
+release = runpy.run_path(str(root / "app" / "version.py"))["__version__"]
 # Não coletar DLLs de outras ferramentas presentes no PATH do desenvolvedor.
 # Qt usa a ICU do Windows; uma ICU de Poppler, por exemplo, tem ABI diferente.
 windows = os.environ["SystemRoot"]
@@ -15,7 +17,7 @@ os.environ["PATH"] = os.pathsep.join((
 ))
 data = collect_data_files("app.ui.brand_assets")
 data += collect_data_files("app.ui.styles")
-data += [(str(root / "build" / "metadata" / "sigilopdf-1.0.0.dist-info"), "sigilopdf-1.0.0.dist-info")]
+data += [(str(root / "build" / "metadata" / f"sigilopdf-{release}.dist-info"), f"sigilopdf-{release}.dist-info")]
 data += [(str(root / "build" / "notices"), "licencas")]
 
 analysis = Analysis(
@@ -53,7 +55,7 @@ exe = EXE(
     upx=False,
     console=False,
     icon=str(root / "app" / "ui" / "brand_assets" / "sigilopdf.ico"),
-    version=str(root / "packaging" / "version_info.txt"),
+    version=str(root / "build" / "metadata" / "version_info.txt"),
 )
 coll = COLLECT(
     exe, analysis.binaries, analysis.datas,

@@ -43,9 +43,11 @@ def parse_page_selection(text: str, total_pages: int, *, preserve_order: bool = 
     return ordered if preserve_order else sorted(pages)
 
 
-def selection_label(pages: list[int]) -> str:
+def selection_label(pages: list[int], max_length: int | None = 80) -> str:
     """Compacta uma seleção ordenada para compor nomes curtos e legíveis."""
     groups: list[str] = []
+    if not pages:
+        return ""
     start = previous = pages[0]
     for page in pages[1:]:
         if page != previous + 1:
@@ -54,4 +56,4 @@ def selection_label(pages: list[int]) -> str:
         previous = page
     groups.append(str(start) if start == previous else f"{start}-{previous}")
     label = ",".join(groups)
-    return label if len(label) <= 80 else f"selecionadas_{len(pages)}"
+    return label if max_length is None or len(label) <= max_length else f"selecionadas_{len(pages)}"

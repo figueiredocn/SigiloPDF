@@ -1,10 +1,10 @@
-# Fontes correspondentes dos pacotes Windows 1.0.0
+# Fontes correspondentes dos pacotes Windows 1.1.0
 
 A release fornece dois arquivos adicionais aos binários:
 
-- `SigiloPDF-1.0.0-fontes-aplicacao.zip`: código próprio, recursos, testes,
+- `SigiloPDF-1.1.0-fontes-aplicacao.zip`: código próprio, recursos, testes,
   scripts de build, instalador e documentação da revisão usada no pacote.
-- `SigiloPDF-1.0.0-fontes-dependencias.zip`: fontes de terceiros, arquivos de
+- `SigiloPDF-1.1.0-fontes-dependencias.zip`: fontes de terceiros, arquivos de
   versões e checksums e receitas originais de compilação dos fornecedores.
 
 O código próprio permanece também sob MIT. A distribuição completa segue AGPL-3.0,
