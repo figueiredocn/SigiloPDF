@@ -1,6 +1,8 @@
 # Segurança
 
-A versão 1.0.x recebe correções de segurança. Consulte também as [limitações de segurança](docs/SEGURANCA.md).
+A versão estável mais recente recebe correções de segurança. Consulte o
+[histórico de releases](https://github.com/figueiredocn/SigiloPDF/releases) e as
+[limitações de segurança](docs/SEGURANCA.md).
 
 Não publique inicialmente detalhes de uma vulnerabilidade em uma issue pública. Use a opção **Report a vulnerability** na aba **Security** do repositório, com relato privado habilitado:
 

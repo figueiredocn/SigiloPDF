@@ -1,5 +1,6 @@
 .venv/
 venv/
+env/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -25,6 +26,24 @@ htmlcov/
 *.key
 .vscode/
 .idea/
+.cursor/
+.history/
+.codex/
+.chatgpt/
+.claude/
+.github/copilot/
+# Instruções locais de ferramentas; convenções públicas ficam em CONTRIBUTING.md.
+AGENTS.md
+CLAUDE.md
+COPILOT.md
+CODEX.md
+PROMPT.md
+PROMPTS.md
+AI_NOTES.md
+DEV_NOTES.md
+INTERNAL.md
+# Specs geradas na raiz; packaging/SigiloPDF.spec é necessário e continua rastreado.
+/*.spec
 .DS_Store
 Thumbs.db
 Desktop.ini

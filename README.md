@@ -40,7 +40,7 @@ Reduza PDFs localmente ou informe um tamanho máximo desejado. Compare o resulta
 
 ## Interface
 
-As capturas abaixo foram feitas no aplicativo, com documentos de demonstração.
+As capturas abaixo foram feitas na versão 1.0, com documentos de demonstração.
 
 ![Tela inicial](assets/screenshots/home.png)
 
